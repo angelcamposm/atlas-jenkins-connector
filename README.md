@@ -1,5 +1,16 @@
 <p align="center">
-  <img src="./docs/images/cover.png" width="600" alt="Atlas Jenkins Connector">
+  <img src="https://github.com/angelcamposm/atlas-jenkins-connector/blob/master/docs/images/cover.png" width="600" alt="Atlas Jenkins Connector">
+  <p align="center">
+    <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
+      <img alt="Total Downloads" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
+    </a>
+    <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
+      <img alt="Latest Version" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
+    </a>
+    <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
+      <img alt="Packagist License" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
+    </a>
+  </p>
 </p>
 
 # Atlas Jenkins Connector
@@ -12,7 +23,7 @@ A robust, modern PHP API client for Jenkins, built for the Atlas ecosystem.
 - **Resource-Based Architecture:** Scalable and easy to navigate.
 - **Mock-Ready:** Designed for 100% test coverage using Guzzle MockHandler.
 - **Subfolder Support:** Automatic path resolution for jobs in folders.
-- **Comprehensive API:** Support for Jobs, Builds, and Users.
+- **Comprehensive API:** Support for Jobs and Builds.
 
 ## Installation
 
@@ -47,8 +58,14 @@ $client->jobs()->build('folder/subfolder/my-job');
 $xml = file_get_contents('config.xml');
 $client->jobs()->create('new-job', $xml, 'my-folder');
 
-// List job artifacts
-$artifacts = $client->jobs()->artifacts('my-job', 123);
+// List all jobs in a folder
+$jobs = $client->jobs()->list('my-folder');
+
+// Discover ALL jobs recursively (across all subfolders)
+$allJobs = $client->jobs()->all();
+foreach ($allJobs as $job) {
+    echo $job->fullPath . PHP_EOL;
+}
 ```
 
 ### Build & Log Management
@@ -59,16 +76,6 @@ $logs = $client->builds()->logs('my-job', 123);
 
 // Update build description
 $client->builds()->updateDescription('my-job', 123, 'Build Successful');
-```
-
-### User Management
-
-```php
-// List all users
-$users = $client->users()->list();
-
-// Get specific user
-$user = $client->users()->get('admin');
 ```
 
 ## Testing
