@@ -8,7 +8,6 @@ use Atlas\Connectors\Jenkins\JenkinsClient;
 use Atlas\Connectors\Jenkins\Resources\BuildResource;
 use Atlas\Connectors\Jenkins\Resources\JobResource;
 use Atlas\Connectors\Jenkins\Resources\SystemResource;
-use Atlas\Connectors\Jenkins\Resources\UserResource;
 use Atlas\Connectors\Jenkins\Tests\TestCase;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -70,12 +69,5 @@ final class JenkinsClientTest extends TestCase
         $client = new JenkinsClient('https://jenkins.example.com');
 
         $this->assertInstanceOf(BuildResource::class, $client->builds());
-    }
-
-    public function test_it_can_access_users_resource(): void
-    {
-        $client = new JenkinsClient('https://jenkins.example.com');
-
-        $this->assertInstanceOf(UserResource::class, $client->users());
     }
 }

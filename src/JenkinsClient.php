@@ -7,7 +7,6 @@ namespace Atlas\Connectors\Jenkins;
 use Atlas\Connectors\Jenkins\Resources\BuildResource;
 use Atlas\Connectors\Jenkins\Resources\JobResource;
 use Atlas\Connectors\Jenkins\Resources\SystemResource;
-use Atlas\Connectors\Jenkins\Resources\UserResource;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
@@ -64,7 +63,7 @@ final class JenkinsClient
     }
 
     /**
-     * Get the jobs resource.
+     * Get the job's resource.
      *
      * @return JobResource
      */
@@ -74,22 +73,12 @@ final class JenkinsClient
     }
 
     /**
-     * Get the builds resource.
+     * Get the build's resource.
      *
      * @return BuildResource
      */
     public function builds(): BuildResource
     {
         return new BuildResource($this->httpClient);
-    }
-
-    /**
-     * Get the users resource.
-     *
-     * @return UserResource
-     */
-    public function users(): UserResource
-    {
-        return new UserResource($this->httpClient);
     }
 }
