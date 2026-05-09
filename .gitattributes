@@ -1,0 +1,25 @@
+# Auto-detect text files and perform LF normalization
+* text=auto eol=lf
+
+# Ensure PHP files always use LF and have PHP syntax highlighting in diffs
+*.php text diff=php eol=lf
+
+# Specify files that should not be included in the distributed archive
+/.github        export-ignore
+/build          export-ignore
+/docs           export-ignore
+/resources      export-ignore
+/tests          export-ignore
+.gitattributes  export-ignore
+.gitignore      export-ignore
+.idea           export-ignore
+.phpunit.cache  export-ignore
+.scannerwork    export-ignore
+CHANGELOG.md    export-ignore
+CONTRIBUTING.md export-ignore
+GEMINI.md       export-ignore
+composer.lock   export-ignore
+phpstan.neon    export-ignore
+phpunit.xml     export-ignore
+SECURITY.md     export-ignore
+sonar-project.properties export-ignore

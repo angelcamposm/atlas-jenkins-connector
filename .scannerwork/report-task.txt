@@ -1,0 +1,6 @@
+projectKey=acamposm_atlas-jenkins-connector
+serverUrl=http://192.168.10.6:9005
+serverVersion=26.4.0.121862
+dashboardUrl=http://192.168.10.6:9005/dashboard?id=acamposm_atlas-jenkins-connector
+ceTaskId=d4e7cd64-14f9-4594-b50a-eb7ad8d741ea
+ceTaskUrl=http://192.168.10.6:9005/api/ce/task?id=d4e7cd64-14f9-4594-b50a-eb7ad8d741ea
