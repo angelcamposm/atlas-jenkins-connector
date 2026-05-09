@@ -23,3 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive unit tests with 100% coverage.
 - Full PHPDoc documentation for all classes and methods.
 - Support for jobs in subfolders with automatic path resolution.
+- Configurable timeouts and automatic retries with exponential backoff.
