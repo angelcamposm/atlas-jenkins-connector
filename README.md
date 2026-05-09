@@ -1,4 +1,6 @@
-![cover.png](docs/images/cover.png)
+<p align="center">
+  <img src="./docs/images/cover.png" width="600" alt="Atlas Jenkins Connector">
+</p>
 
 # Atlas Jenkins Connector
 
