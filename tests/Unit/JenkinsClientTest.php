@@ -10,6 +10,9 @@ use Atlas\Connectors\Jenkins\Resources\JobResource;
 use Atlas\Connectors\Jenkins\Resources\SystemResource;
 use Atlas\Connectors\Jenkins\Tests\TestCase;
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 /**
@@ -50,6 +53,20 @@ final class JenkinsClientTest extends TestCase
         $this->assertSame($customClient, $client->httpClient);
     }
 
+    public function test_it_can_be_instantiated_with_custom_timeout(): void
+    {
+        $client = new JenkinsClient('https://jenkins.example.com', null, null, null, 15.0);
+
+        $this->assertEquals(15.0, $client->httpClient->getConfig('timeout'));
+    }
+
+    public function test_it_uses_default_timeout(): void
+    {
+        $client = new JenkinsClient('https://jenkins.example.com');
+
+        $this->assertEquals(30.0, $client->httpClient->getConfig('timeout'));
+    }
+
     public function test_it_can_access_system_resource(): void
     {
         $client = new JenkinsClient('https://jenkins.example.com');
@@ -69,5 +86,44 @@ final class JenkinsClientTest extends TestCase
         $client = new JenkinsClient('https://jenkins.example.com');
 
         $this->assertInstanceOf(BuildResource::class, $client->builds());
+    }
+
+    public function test_it_retries_on_server_error(): void
+    {
+        $mock = new MockHandler([
+            new Response(500),
+            new Response(200, [], json_encode(['foo' => 'bar'])),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new JenkinsClient(
+            baseUrl: 'https://jenkins.example.com',
+            handlerStack: $handlerStack
+        );
+
+        $response = $client->system()->info();
+
+        $this->assertEquals(['foo' => 'bar'], $response);
+        $this->assertEquals(0, count($mock)); // MockHandler empties itself as it processes responses
+    }
+
+    public function test_it_gives_up_after_max_retries(): void
+    {
+        $mock = new MockHandler([
+            new Response(500),
+            new Response(500),
+            new Response(500),
+            new Response(500),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new JenkinsClient(
+            baseUrl: 'https://jenkins.example.com',
+            maxRetries: 2,
+            handlerStack: $handlerStack
+        );
+
+        $this->expectException(\Atlas\Connectors\Jenkins\Exceptions\ApiException::class);
+        $client->system()->info();
     }
 }
