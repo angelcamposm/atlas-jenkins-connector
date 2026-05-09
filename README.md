@@ -2,16 +2,18 @@
   <img src="https://github.com/angelcamposm/atlas-jenkins-connector/blob/master/docs/images/cover.png" width="600" alt="Atlas Jenkins Connector">
   <p align="center">
     <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
-      <img alt="Total Downloads" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
+      <img alt="Total Downloads" src="https://img.shields.io/packagist/dt/acamposm/atlas-jenkins-connector">
     </a>
     <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
-      <img alt="Latest Version" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
+      <img alt="Latest Version" src="https://img.shields.io/packagist/v/acamposm/atlas-jenkins-connector">
     </a>
     <a href="https://packagist.org/packages/acamposm/atlas-jenkins-connector">
       <img alt="Packagist License" src="https://img.shields.io/packagist/l/acamposm/atlas-jenkins-connector">
     </a>
   </p>
 </p>
+
+---
 
 # Atlas Jenkins Connector
 
