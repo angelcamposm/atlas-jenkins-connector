@@ -43,7 +43,9 @@ use Atlas\Connectors\Jenkins\JenkinsClient;
 $client = new JenkinsClient(
     baseUrl: 'https://jenkins.example.com',
     username: 'admin',
-    apiToken: 'your-api-token'
+    apiToken: 'your-api-token',
+    timeout: 60.0,    // Optional: Default is 30.0
+    maxRetries: 5     // Optional: Default is 3
 );
 ```
 
