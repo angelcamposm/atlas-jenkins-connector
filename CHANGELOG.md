@@ -13,13 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Create jobs from XML definitions.
   - Update job/pipeline descriptions.
   - List job artifacts.
+  - List all jobs at a specific path.
+  - Recursive job discovery (`all()`) across all folders and subfolders.
+- `JobType` enum for type-safe job and container classification.
 - `BuildResource` for managing Jenkins builds.
   - Retrieve console logs (text).
   - Update build descriptions.
-- `UserResource` for managing Jenkins users.
-  - List all users.
-  - Get user details.
-  - Delete users.
 - `JenkinsClient` updates to expose the new resources.
 - Comprehensive unit tests with 100% coverage.
 - Full PHPDoc documentation for all classes and methods.
