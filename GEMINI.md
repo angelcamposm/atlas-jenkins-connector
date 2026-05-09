@@ -14,6 +14,10 @@ Jenkins uses a specific path format for jobs in folders: `job/FOLDER_NAME/job/JO
 - All resource methods accepting a job path must use the `resolvePath()` helper to ensure consistent formatting.
 - The helper should handle both raw paths (`folder/job`) and already formatted paths (`job/folder/job/job`).
 
+### Job Classification
+- Use the `Atlas\Connectors\Jenkins\Enums\JobType` enum for classifying Jenkins items.
+- The enum provides helper methods like `isContainer()` and `isFolder()` to guide recursive discovery and UI display.
+
 ## Coding Standards & Conventions
 
 - **PHP Version:** Strictly target PHP 8.5+.
